@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.js</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>Mój własny clicker</h1>
+        <p>Ilość kliknięć: {{ ilKlikniec }}</p>
+        <button @click="increment">Kliknij mnie!</button>
+        <button @click="kupUlepszenie">Kup ulepszenie za: {{ kosztUlepszenia }}</button>
+    </div>
+
+    <script>
+    
+      const app = Vue.createApp({
+        data() {
+            return{
+                ilKlikniec: 0,
+                ilUlepszen: 1,
+                kosztUlepszenia: 20
+            }
+        },
+        methods: {
+            increment(){
+                this.ilKlikniec=this.ilKlikniec+this.ilUlepszen;
+            },
+            kupUlepszenie(){
+                if(this.ilKlikniec >= this.kosztUlepszenia){
+                this.ilKlikniec = this.ilKlikniec-this.kosztUlepszenia,
+                this.kosztUlepszenia = Math.ceil(this.kosztUlepszenia*1.5),
+                this.ilUlepszen++}
+                else{
+                    alert("Zdobądź więcej pieniędzy zanim to kupisz!")
+                }
+            }
+        }
+      })
+    
+     app.mount('#app')
+    
+    </script>
+</body>
